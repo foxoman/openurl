@@ -14,10 +14,10 @@
 ##
 ## Support for MacOS, Windows, Haiku, termux, Unix/Linux.
 
-import std/os, osproc, strutils
+import std/os, osproc, strutils, figures
 
 const
-  canNotOpenUrlErrStr: string = "[WRN]: Could Not Open Url. UnSupported OS."
+  canNotOpenUrlErrStr: string = "$1 Could Not Open Url. UnSupported OS." % [figures.cross]
   blankPageString*: string = "http:about:blank" ## \
   ##  Blank page string.
   ##  Implements IETF RFC-6694 Section 3
@@ -66,8 +66,8 @@ when isMainModule:
 """
 
   if paramCount() > 0:
-    echo "[*] Open: $1" % [prepare paramStr(1)]
+    echo "$1 Open: $2" % [figures.play, prepare paramStr(1)]
     openUrl(paramStr(1))
   else:
-    echo "[*] No Url input, a blank page will open."
+    echo "$1 No Url input, a blank page will open." % [figures.cross]
     openUrl()
