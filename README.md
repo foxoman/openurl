@@ -7,6 +7,7 @@
 ```
  Open Any Url/File in the default App / WebBrowser
  Sultan Al Isaee ~ foxoman @2022
+ 
  See MIT LICENSE.txt for details of the license.
 
  Support for MacOS, Windows, Haiku, termux, Unix/Linux.
