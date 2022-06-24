@@ -1,5 +1,5 @@
 # Package
-version       = "0.1.0"
+version       = "2.0.0"
 author        = "Sultan Al Isaiee"
 description   = "Open Any Url/File in the default desktop App / WebBrowser!"
 license       = "MIT"
