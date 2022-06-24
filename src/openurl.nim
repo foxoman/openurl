@@ -46,6 +46,12 @@ proc openUrl*(url: string = blankPageString) =
   ##
   ## .. code-block:: nim
   ##   openUrl("https://www.foxoman.net")
+  ##
+  ## .. code-block:: nim
+  ##   openUrl(r"c:\Dev\Folder")
+  ##
+  ## .. code-block:: nim
+  ##   openUrl()
 
   var u: string
   if url.len == 0: # If the url string is empty,

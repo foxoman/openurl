@@ -125,9 +125,8 @@ window.addEventListener('DOMContentLoaded', main);
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
   
-  <p class="module-desc"><p>Re-implements the standard <tt class="docutils literal"><span class="pre"><span class="Identifier">browsers</span></span></tt> nim module, with added support for Haiku, Android and the use of <tt class="docutils literal"><span class="pre"><span class="Identifier">start</span></span></tt> windows shell command.</p>
-<p>A simple proc for opening URLs with the user's default browser or default app handler!</p>
-<p>Support for MacOS, Windows, Haiku, Android, Unix/Linux freedesktop Distros.</p>
+  <p class="module-desc"><p>A simple proc for opening URLs with the user's default browser or default app handler!</p>
+<p>Support for MacOS, Windows, Haiku, termux, Unix/Linux.</p>
 </p>
   <div class="section" id="10">
 <h1><a class="toc-backref" href="#10">Consts</a></h1>
@@ -153,21 +152,15 @@ window.addEventListener('DOMContentLoaded', main);
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
 <div id="openUrl,string">
-<dt><pre><span class="Keyword">proc</span> <a href="#openUrl%2Cstring"><span class="Identifier">openUrl</span></a><span class="Other">(</span><span class="Identifier">url</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="Identifier">blankPageString</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span>
-    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ExecIOEffect</span><span class="Other">]</span></span>.}</pre></dt>
+<dt><pre><span class="Keyword">proc</span> <a href="#openUrl%2Cstring"><span class="Identifier">openUrl</span></a><span class="Other">(</span><span class="Identifier">url</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="Identifier">blankPageString</span><span class="Other">)</span> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">IOError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ExecIOEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-<p>Opens <tt class="docutils literal"><span class="pre"><span class="Identifier">url</span></span></tt> with the user's default browser or default file handler.</p>
-<p>Under Windows, <tt class="docutils literal"><span class="pre"><span class="Identifier">start</span></span></tt> is used. Under Mac OS X and Haiku the <tt class="docutils literal"><span class="pre"><span class="Identifier">open</span></span></tt> command is used. Under Android/Termux <tt class="docutils literal"><span class="pre"><span class="Identifier">am</span> <span class="Identifier">start</span></span></tt> is used. Under Unix/Linux, check if <tt class="docutils literal"><span class="pre"><span class="Identifier">xdg</span><span class="Operator">-</span><span class="Identifier">open</span></span></tt> exists and use it. Otherwise the environment variable <tt class="docutils literal"><span class="pre"><span class="Identifier">BROWSER</span></span></tt> is used to determine the default browser to use.</p>
-<p>Default browser blank page will open if <tt class="docutils literal"><span class="pre"><span class="Identifier">url</span></span></tt> string is empty!</p>
+<p>Opens <tt class="docutils literal"><span class="pre"><span class="Identifier">url</span></span></tt> with the user's default browser or default file handel.</p>
+<p>Under Windows, <tt class="docutils literal"><span class="pre"><span class="Identifier">start</span></span></tt> is used. Under Mac OS X, Haiku, unix, linux, termux the <tt class="docutils literal"><span class="pre"><span class="Identifier">open</span></span></tt> command is used.</p>
+<p>Default browser blank page will open if <tt class="docutils literal"><span class="pre"><span class="Identifier">url</span></span></tt> string is empty or not set.</p>
 <p><strong>API:</strong></p>
-<pre class="listing"><span class="Identifier">openUrl</span><span class="Punctuation">(</span><span class="StringLit">&quot;https:/www.foxoman.net&quot;</span><span class="Punctuation">)</span></pre><p><strong>Example:</strong></p>
-<pre class="listing"><span class="Keyword">if</span> <span class="Identifier">paramCount</span><span class="Punctuation">(</span><span class="Punctuation">)</span> <span class="Operator">&gt;</span> <span class="DecNumber">0</span><span class="Punctuation">:</span>
-  <span class="Identifier">echo</span> <span class="StringLit">&quot;[*] Open: $1&quot;</span> <span class="Operator">%</span> <span class="Punctuation">[</span><span class="Identifier">paramStr</span><span class="Punctuation">(</span><span class="DecNumber">1</span><span class="Punctuation">)</span><span class="Punctuation">]</span>
-  <span class="Identifier">openUrl</span><span class="Punctuation">(</span><span class="Identifier">paramStr</span><span class="Punctuation">(</span><span class="DecNumber">1</span><span class="Punctuation">)</span><span class="Punctuation">)</span>
-<span class="Keyword">else</span><span class="Punctuation">:</span>
-  <span class="Identifier">echo</span> <span class="StringLit">&quot;[*] No Url input, default blank page will open.&quot;</span>
-  <span class="Identifier">openUrl</span><span class="Punctuation">(</span><span class="Punctuation">)</span></pre>
+<pre class="listing"><span class="Identifier">openUrl</span><span class="Punctuation">(</span><span class="StringLit">&quot;https://www.foxoman.net&quot;</span><span class="Punctuation">)</span></pre><pre class="listing"><span class="Identifier">openUrl</span><span class="Punctuation">(</span><span class="RawData">r&quot;c:\Dev\Folder&quot;</span><span class="Punctuation">)</span></pre><pre class="listing"><span class="Identifier">openUrl</span><span class="Punctuation">(</span><span class="Punctuation">)</span></pre>
 
 </dd>
 </div>
@@ -181,7 +174,7 @@ window.addEventListener('DOMContentLoaded', main);
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2022-06-17 10:14:53 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2022-06-24 15:59:07 UTC</small>
       </div>
     </div>
   </div>
