@@ -10,3 +10,4 @@ bin           = @["openurl"]
 
 # Dependencies
 requires "nim >= 1.4.6"
+requires "figures"
