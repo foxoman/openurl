@@ -19,7 +19,9 @@
 
 ```openurl(PATH)```
 *PATH* can be a file/folder url or a website or even empty to open blank page in a browser.
-**use raw string for file/folder path** ie: ```openurl(r"c:\dev\folder") ```
+
+- **use raw string for file/folder path** ie: ```openurl(r"c:\dev\folder") ```
+- url path should start with http/https
 
  ### example
 
