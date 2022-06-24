@@ -9,6 +9,8 @@
  Sultan Al Isaee ~ foxoman @2022
  See MIT LICENSE.txt for details of the license.
 
+ Support for MacOS, Windows, Haiku, termux, Unix/Linux.
+
  ### install
  ```nimble install openurl```
 
@@ -16,7 +18,7 @@
 
 ```openurl(PATH)```
 *PATH* can be a file/folder url or a website or even empty to open blank page in a browser.
-** use raw string for file/folder path **
+**use raw string for file/folder path** ie: ```openurl(r"c:\dev\folder") ```
 
  ### example
 
