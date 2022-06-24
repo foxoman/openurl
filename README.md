@@ -12,6 +12,12 @@
  ### install
  ```nimble install openurl```
 
+### api
+
+```openurl(PATH)```
+*PATH* can be a file/folder url or a website or even empty to open blank page in a browser.
+** use raw string for file/folder path **
+
  ### example
 
  ```
