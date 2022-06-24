@@ -3,14 +3,14 @@
   _                   _
  / \ ._   _  ._  | | |_) |
  \_/ |_) (/_ | | |_| | \ |_
-     | v: 2.0.0   @FOXOMAN
+     | v: 2.0.1   @FOXOMAN
 ```
  Open Any Url/File in the default App / WebBrowser
  Sultan Al Isaee ~ foxoman @2022
- 
+
  See MIT LICENSE.txt for details of the license.
 
- Support for MacOS, Windows, Haiku, termux, Unix/Linux.
+ Support for MacOS, Windows, Haiku, android/termux, Unix/Linux.
 
  ### install
  ```nimble install openurl```
@@ -21,7 +21,8 @@
 *PATH* can be a file/folder url or a website or even empty to open blank page in a browser.
 
 - **use raw string for file/folder path** ie: ```openurl(r"c:\dev\folder") ```
-- url path should start with http/https
+- `url` for a website should start with http or https
+- compile with `-d:droid` to have support for android activity,in termux no need to do that as unix `open` is supported.
 
  ### example
 

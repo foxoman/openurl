@@ -2,7 +2,7 @@
   _                   _
  / \ ._   _  ._  | | |_) |
  \_/ |_) (/_ | | |_| | \ |_
-     | v: 2.0.0   @FOXOMAN
+     | v: 2.0.1   @FOXOMAN
 
  Open Any Url/File in the default App / WebBrowser
  Sultan Al Isaee ~ foxoman @2022
@@ -12,7 +12,7 @@
 ## A simple proc for opening URLs with the user's
 ## default browser or default app handler!
 ##
-## Support for MacOS, Windows, Haiku, termux, Unix/Linux.
+## Support for MacOS, Windows, Haiku, Android/Termux, Unix/Linux.
 
 import std/os, osproc, strutils, figures
 
@@ -25,8 +25,8 @@ const
   ##
   ## * https://tools.ietf.org/html/rfc6694#section-3
   openCString: string =
-    when defined(windows): "start $1" % [quoteShell("")] else: "open"
-    # am start -a android.intent.action.VIEW -d
+    when defined(windows): "start $1" % [quoteShell("")] else:
+        when defined(droid): "am start -a android.intent.action.VIEW -d" else: "open"
 
 proc prepare(url: string): string =
   if url.contains("://") or url == blankPageString:
@@ -40,7 +40,14 @@ proc openUrl*(url: string = blankPageString) =
   ## Under Windows, `start` is used. Under Mac OS X, Haiku,
   ## unix, linux, termux the `open` command is used.
   ##
+  ## If Android Activity support enable with `-d:droid` then android acitivty is used!
+  ##
   ## Default browser blank page will open if `url` string is empty or not set.
+  ##
+  ## - `url` for a website should start with http or https
+  ## - use raw string for system path eg `openurl(r"c:\folder\file")`
+  ## - compile with `-d:droid` to have support for android activity,
+  ##   in termux no need to do that as unix `open` is supported.
   ##
   ## **API:**
   ##
@@ -68,7 +75,7 @@ when isMainModule:
   _                   _
  / \ ._   _  ._  | | |_) |
  \_/ |_) (/_ | | |_| | \ |_
-     | v: 2.0.0   @FOXOMAN
+     | v: 2.0.1   @FOXOMAN
 """
 
   if paramCount() > 0:

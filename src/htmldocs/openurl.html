@@ -126,7 +126,7 @@ window.addEventListener('DOMContentLoaded', main);
   <div id="tocRoot"></div>
   
   <p class="module-desc"><p>A simple proc for opening URLs with the user's default browser or default app handler!</p>
-<p>Support for MacOS, Windows, Haiku, termux, Unix/Linux.</p>
+<p>Support for MacOS, Windows, Haiku, Android/Termux, Unix/Linux.</p>
 </p>
   <div class="section" id="10">
 <h1><a class="toc-backref" href="#10">Consts</a></h1>
@@ -158,7 +158,12 @@ window.addEventListener('DOMContentLoaded', main);
 
 <p>Opens <tt class="docutils literal"><span class="pre"><span class="Identifier">url</span></span></tt> with the user's default browser or default file handel.</p>
 <p>Under Windows, <tt class="docutils literal"><span class="pre"><span class="Identifier">start</span></span></tt> is used. Under Mac OS X, Haiku, unix, linux, termux the <tt class="docutils literal"><span class="pre"><span class="Identifier">open</span></span></tt> command is used.</p>
+<p>If Android Activity support enable with <tt class="docutils literal"><span class="pre"><span class="Operator">-</span><span class="Identifier">d</span><span class="Punctuation">:</span><span class="Identifier">droid</span></span></tt> then android acitivty is used!</p>
 <p>Default browser blank page will open if <tt class="docutils literal"><span class="pre"><span class="Identifier">url</span></span></tt> string is empty or not set.</p>
+<ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="Identifier">url</span></span></tt> for a website should start with http or https</li>
+<li>use raw string for system path eg <tt class="docutils literal"><span class="pre"><span class="Identifier">openurl</span><span class="Punctuation">(</span><span class="RawData">r&quot;c:\folder\file&quot;</span><span class="Punctuation">)</span></span></tt></li>
+<li>compile with <tt class="docutils literal"><span class="pre"><span class="Operator">-</span><span class="Identifier">d</span><span class="Punctuation">:</span><span class="Identifier">droid</span></span></tt> to have support for android activity, in termux no need to do that as unix <tt class="docutils literal"><span class="pre"><span class="Identifier">open</span></span></tt> is supported.</li>
+</ul>
 <p><strong>API:</strong></p>
 <pre class="listing"><span class="Identifier">openUrl</span><span class="Punctuation">(</span><span class="StringLit">&quot;https://www.foxoman.net&quot;</span><span class="Punctuation">)</span></pre><pre class="listing"><span class="Identifier">openUrl</span><span class="Punctuation">(</span><span class="RawData">r&quot;c:\Dev\Folder&quot;</span><span class="Punctuation">)</span></pre><pre class="listing"><span class="Identifier">openUrl</span><span class="Punctuation">(</span><span class="Punctuation">)</span></pre>
 
@@ -174,7 +179,7 @@ window.addEventListener('DOMContentLoaded', main);
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2022-06-24 15:59:07 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2022-06-24 21:27:11 UTC</small>
       </div>
     </div>
   </div>
