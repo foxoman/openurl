@@ -2,7 +2,7 @@
   _                   _
  / \ ._   _  ._  | | |_) |
  \_/ |_) (/_ | | |_| | \ |_
-     | v: 2.0.1   @FOXOMAN
+     | v: 2.0.2   @FOXOMAN
 
  Open Any Url/File in the default App / WebBrowser
  Sultan Al Isaee ~ foxoman @2022
@@ -76,7 +76,7 @@ when isMainModule:
   _                   _
  / \ ._   _  ._  | | |_) |
  \_/ |_) (/_ | | |_| | \ |_
-     | v: 2.0.1   @FOXOMAN
+     | v: 2.0.2  @FOXOMAN
 """
 
   if paramCount() > 0:
