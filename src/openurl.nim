@@ -25,14 +25,15 @@ const
   ##
   ## * https://tools.ietf.org/html/rfc6694#section-3
   openCString: string =
-    when defined(windows): "start $1" % [quoteShell("")] else:
-        when defined(droid): "am start -a android.intent.action.VIEW -d" else: "open"
+    when defined(windows): "start $1" % [quoteShell("")]
+    elif defined(droid): "am start -a android.intent.action.VIEW -d"
+    else: "open"
 
 proc prepare(url: string): string =
   if url.contains("://") or url == blankPageString:
-    return url
+    url
   else:
-    return "file://" & absolutePath(url)
+    "file://" & absolutePath(url)
 
 proc openUrl*(url: string = blankPageString) =
   ## Opens `url` with the user's default browser or default file handel.
@@ -60,15 +61,15 @@ proc openUrl*(url: string = blankPageString) =
   ## .. code-block:: nim
   ##   openUrl()
 
-  var u: string
-  if url.len == 0: # If the url string is empty,
-    u = quoteShell blankPageString # default to blank page
-  else: u = quoteShell url.prepare
+  var u = quoteShell:
+    if url.len == 0: # If the url string is empty,
+       blankPageString # default to blank page
+    else: 
+      url.prepare
 
-  if execShellCmd("$1 $2" % [openCString, u]) == 0:
-    return
-  else:
+  if execShellCmd("$1 $2" % [openCString, u]) != 0:
     stderr.writeLine canNotOpenUrlErrStr
+
 
 when isMainModule:
   echo """
