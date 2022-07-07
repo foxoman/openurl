@@ -2,7 +2,7 @@
   _                   _
  / \ ._   _  ._  | | |_) |
  \_/ |_) (/_ | | |_| | \ |_
-     | v: 2.0.2   @FOXOMAN
+     | v: 2.0.3   @FOXOMAN
 
  Open Any Url/File in the default App / WebBrowser
  Sultan Al Isaee ~ foxoman @2022
@@ -64,7 +64,7 @@ proc openUrl*(url: string = blankPageString) =
   var u = quoteShell:
     if url.len == 0: # If the url string is empty,
        blankPageString # default to blank page
-    else: 
+    else:
       url.prepare
 
   if execShellCmd("$1 $2" % [openCString, u]) != 0:
@@ -76,7 +76,7 @@ when isMainModule:
   _                   _
  / \ ._   _  ._  | | |_) |
  \_/ |_) (/_ | | |_| | \ |_
-     | v: 2.0.2  @FOXOMAN
+     | v: 2.0.3  @FOXOMAN
 """
 
   if paramCount() > 0:
