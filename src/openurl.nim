@@ -2,10 +2,10 @@
   _                   _
  / \ ._   _  ._  | | |_) |
  \_/ |_) (/_ | | |_| | \ |_
-     | v: 2.0.3   @FOXOMAN
+     |            @FOXOMAN
 
  Open Any Url/File in the default App / WebBrowser
- Sultan Al Isaee ~ foxoman @2022
+ Sultan Al Isaee ~ foxoman @2022-2023
  See MIT LICENSE.txt for details of the license.
 ]#
 
@@ -14,10 +14,11 @@
 ##
 ## Support for MacOS, Windows, Haiku, Android/Termux, Unix/Linux.
 
-import std/os, osproc, strutils, figures
+import std/[os, osproc, strutils]
 
 const
-  canNotOpenUrlErrStr: string = "$1 Could Not Open Url. UnSupported OS." % [figures.cross]
+  canNotOpenUrlErrStr: string =
+    "[✖] Could Not Open Url. UnSupported OS."
   blankPageString*: string = "http:about:blank" ## \
   ##  Blank page string.
   ##  Implements IETF RFC-6694 Section 3
@@ -27,10 +28,15 @@ const
   openCString: string =
     when defined(windows): "start $1" % [quoteShell("")]
     elif defined(droid): "am start -a android.intent.action.VIEW -d"
-    else: "open"
+    else: "open"                                ## \
+  ## Support Windows using `start`, Support for all unix/linux based
+  ## using `open` and support for android Java Activity 'start'.
+  ##
+  ## In termux the unix open will be used, to activate Android Java Activity
+  ## Open use `-d:droid`.
 
 proc prepare(url: string): string =
-  if url.contains("://") or url == blankPageString:
+  if url.contains("://") or url.contains("www.") or url == blankPageString:
     url
   else:
     "file://" & absolutePath(url)
@@ -41,7 +47,8 @@ proc openUrl*(url: string = blankPageString) =
   ## Under Windows, `start` is used. Under Mac OS X, Haiku,
   ## unix, linux, termux the `open` command is used.
   ##
-  ## If Android Activity support enable with `-d:droid` then android acitivty is used!
+  ## If Android Activity support enable with `-d:droid` then android
+  ## acitivty is used!
   ##
   ## Default browser blank page will open if `url` string is empty or not set.
   ##
@@ -62,26 +69,25 @@ proc openUrl*(url: string = blankPageString) =
   ##   openUrl()
 
   var u = quoteShell:
-    if url.len == 0: # If the url string is empty,
-       blankPageString # default to blank page
+    if url.len == 0:  # If the url string is empty,
+      blankPageString # default to blank page
     else:
       url.prepare
 
   if execShellCmd("$1 $2" % [openCString, u]) != 0:
     stderr.writeLine canNotOpenUrlErrStr
 
-
 when isMainModule:
   echo """
   _                   _
  / \ ._   _  ._  | | |_) |
  \_/ |_) (/_ | | |_| | \ |_
-     | v: 2.0.3  @FOXOMAN
+     |            @FOXOMAN
 """
 
   if paramCount() > 0:
-    echo "$1 Open: $2" % [figures.play, prepare paramStr(1)]
+    echo "[✔] Open: $1" % [prepare paramStr(1)]
     openUrl(paramStr(1))
   else:
-    echo "$1 No Url input, a blank page will open." % [figures.cross]
+    echo "[✖] No URL input, a blank page will open."
     openUrl()
