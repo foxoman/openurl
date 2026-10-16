@@ -5,7 +5,7 @@
      |            @FOXOMAN
 
  Open Any Url/File in the default App / WebBrowser
- Sultan Al Isaee ~ foxoman @2022-2023
+ Sultan Al Isaiee ~ foxoman @2022-2026
  See MIT LICENSE.txt for details of the license.
 ]#
 
@@ -26,9 +26,12 @@ const
   ##
   ## * https://tools.ietf.org/html/rfc6694#section-3
   openCString: string =
-    when defined(windows): "start $1" % [quoteShell("")]
-    elif defined(droid): "am start -a android.intent.action.VIEW -d"
-    else: "open"                                ## \
+    when defined(windows):
+      "start $1" % [quoteShell("")]
+    elif defined(droid):
+      "am start -a android.intent.action.VIEW -d"
+    else:
+      "open" ## \
   ## Support Windows using `start`, Support for all unix/linux based
   ## using `open` and support for android Java Activity 'start'.
   ##
@@ -69,7 +72,7 @@ proc openUrl*(url: string = blankPageString) =
   ##   openUrl()
 
   var u = quoteShell:
-    if url.len == 0:  # If the url string is empty,
+    if url.len == 0: # If the url string is empty,
       blankPageString # default to blank page
     else:
       url.prepare
