@@ -1,5 +1,5 @@
 # Package
-version     = "2.0.4"
+version     = "2.2.0"
 author      = "Sultan Al Isaiee"
 description = "Open Any Url/File in the default desktop App / WebBrowser!"
 license     = "MIT"
@@ -8,4 +8,4 @@ installExt  = @["nim"]
 bin         = @["openurl"]
 
 # Dependencies
-requires "nim >= 1.9.1"
+requires "nim >= 2.2.0"
