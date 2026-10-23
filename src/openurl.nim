@@ -17,8 +17,7 @@
 import std/[os, osproc, strutils]
 
 const
-  canNotOpenUrlErrStr: string =
-    "[✖] Could Not Open Url. UnSupported OS."
+  canNotOpenUrlErrStr: string = "[✖] Could Not Open Url. UnSupported OS."
   blankPageString*: string = "http:about:blank" ## \
   ##  Blank page string.
   ##  Implements IETF RFC-6694 Section 3
@@ -71,7 +70,7 @@ proc openUrl*(url: string = blankPageString) =
   ## .. code-block:: nim
   ##   openUrl()
 
-  var u = quoteShell:
+  let u = quoteShell:
     if url.len == 0: # If the url string is empty,
       blankPageString # default to blank page
     else:
